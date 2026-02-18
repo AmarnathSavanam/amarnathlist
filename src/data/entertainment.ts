@@ -13,6 +13,7 @@ import posterSeries4 from "@/assets/poster-series-4.jpg";
 import heroMarvel from "@/assets/hero-marvel.jpg";
 import heroAnime from "@/assets/hero-anime.jpg";
 import heroSeries from "@/assets/hero-series.jpg";
+import { extendedAnimeData } from "./animeExtended";
 
 export type Category = "marvel" | "series" | "anime";
 
@@ -191,12 +192,16 @@ export const entertainmentData: EntertainmentItem[] = [
   },
 ];
 
+export function getAllData(): EntertainmentItem[] {
+  return [...entertainmentData, ...extendedAnimeData];
+}
+
 export function getItemsByCategory(category: Category): EntertainmentItem[] {
-  return entertainmentData.filter((item) => item.category === category);
+  return getAllData().filter((item) => item.category === category);
 }
 
 export function getRecommendations(item: EntertainmentItem, limit = 4): EntertainmentItem[] {
-  const others = entertainmentData.filter((i) => i.id !== item.id);
+  const others = getAllData().filter((i) => i.id !== item.id);
 
   // Score by matching category and genres
   const scored = others.map((i) => {
