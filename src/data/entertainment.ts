@@ -1,4 +1,4 @@
-import posterMarvel1 from "@/assets/poster-marvel-1.jpg";
+import posterMarvel1 from "@/assets/https://m.media-amazon.com/images/M/MV5BZTNjOWI0ZTAtOGY1OS00ZGU0LWEyOWYtMjhkYjdlYmVjMDk2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg";
 import posterMarvel2 from "@/assets/poster-marvel-2.jpg";
 import posterMarvel3 from "@/assets/poster-marvel-3.jpg";
 import posterMarvel4 from "@/assets/poster-marvel-4.jpg";
