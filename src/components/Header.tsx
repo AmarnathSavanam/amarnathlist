@@ -1,0 +1,58 @@
+import type { Category } from "@/data/entertainment";
+import { categoryLabels } from "@/data/entertainment";
+
+interface HeaderProps {
+  activeCategory: Category | "all";
+  onCategoryChange: (category: Category | "all") => void;
+  hasSelectedItem: boolean;
+}
+
+const categories: (Category | "all")[] = ["all", "marvel", "series", "anime"];
+
+const categoryStyles: Record<string, string> = {
+  all: "text-foreground border-foreground",
+  marvel: "text-marvel-glow border-marvel-glow",
+  series: "text-series-glow border-series-glow",
+  anime: "text-anime-glow border-anime-glow",
+};
+
+export default function Header({ activeCategory, onCategoryChange, hasSelectedItem }: HeaderProps) {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 glass-panel">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <h1 className="font-display text-xl font-bold tracking-tight text-foreground">
+            <span className="text-marvel">S</span>
+            <span className="text-series">T</span>
+            <span className="text-anime">R</span>
+            EAM
+          </h1>
+
+          {!hasSelectedItem && (
+            <nav className="flex items-center gap-1 sm:gap-2">
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => onCategoryChange(cat)}
+                    className={`
+                      px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-medium
+                      transition-all duration-300 border border-transparent
+                      ${isActive
+                        ? `${categoryStyles[cat]} border-current bg-secondary`
+                        : "text-muted-foreground hover:text-foreground"
+                      }
+                    `}
+                  >
+                    {cat === "all" ? "All" : categoryLabels[cat]}
+                  </button>
+                );
+              })}
+            </nav>
+          )}
+        </div>
+      </div>
+    </header>
+  );
+}
