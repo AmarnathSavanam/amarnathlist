@@ -2,12 +2,15 @@ import { ArrowLeft } from "lucide-react";
 import type { EntertainmentItem, Category } from "@/data/entertainment";
 import { getRecommendations } from "@/data/entertainment";
 import { resolveImages } from "@/data/imageRegistry";
+import { resolveTrailer } from "@/data/trailerRegistry";
 import EntertainmentCard from "./EntertainmentCard";
+import TrailerPlayer from "./TrailerPlayer";
 
 interface DetailViewProps {
   item: EntertainmentItem;
   onBack: () => void;
   onCardClick: (item: EntertainmentItem) => void;
+  onGenreClick?: (genre: string) => void;
 }
 
 const accentText: Record<Category, string> = {
@@ -22,9 +25,10 @@ const accentBadge: Record<Category, string> = {
   series: "bg-series/20 text-series-glow border-series/30",
 };
 
-export default function DetailView({ item, onBack, onCardClick }: DetailViewProps) {
+export default function DetailView({ item, onBack, onCardClick, onGenreClick }: DetailViewProps) {
   const recommendations = getRecommendations(item, 4);
   const images = resolveImages(item.title, item.poster, item.banner, item.category);
+  const trailerUrl = resolveTrailer(item.title);
 
   return (
     <div className="animate-fade-in-scale">
@@ -58,34 +62,55 @@ export default function DetailView({ item, onBack, onCardClick }: DetailViewProp
         </div>
       </div>
 
-      {/* Content */}
+      {/* Content — two-column on desktop */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-4 relative z-10">
-        {/* Metadata */}
-        <div className="flex flex-wrap items-center gap-3 mb-6">
-          <span className="text-sm font-semibold text-foreground">
-            ★ {item.rating}
-          </span>
-          <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-          <span className="text-sm text-muted-foreground">{item.year}</span>
-          <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-          {item.genres.map((genre) => (
-            <span
-              key={genre}
-              className={`text-xs px-2.5 py-1 rounded-full border ${accentBadge[item.category]}`}
-            >
-              {genre}
-            </span>
-          ))}
+        <div className="lg:grid lg:grid-cols-[1fr_1fr] lg:gap-12">
+          {/* Left column: trailer */}
+          <div>
+            {/* Trailer */}
+            {trailerUrl && (
+              <div className="mb-8">
+                <h3 className="font-display text-lg font-semibold text-foreground mb-3">Trailer</h3>
+                <TrailerPlayer
+                  trailerUrl={trailerUrl}
+                  posterUrl={images.banner}
+                  title={item.title}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Right column: metadata + description */}
+          <div>
+            {/* Metadata */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <span className="text-sm font-semibold text-foreground">
+                ★ {item.rating}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
+              <span className="text-sm text-muted-foreground">{item.year}</span>
+              <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
+              {item.genres.map((genre) => (
+                <button
+                  key={genre}
+                  onClick={() => onGenreClick?.(genre)}
+                  className={`text-xs px-2.5 py-1 rounded-full border transition-colors duration-200 hover:opacity-80 ${accentBadge[item.category]}`}
+                >
+                  {genre}
+                </button>
+              ))}
+            </div>
+
+            {/* Description */}
+            <div className="glass-panel rounded-2xl p-6 sm:p-8 mb-16">
+              <p className="text-sm sm:text-base leading-relaxed text-secondary-foreground">
+                {item.description}
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Description */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 max-w-3xl mb-16">
-          <p className="text-sm sm:text-base leading-relaxed text-secondary-foreground">
-            {item.description}
-          </p>
-        </div>
-
-        {/* Recommendations */}
+        {/* Recommendations — full width */}
         {recommendations.length > 0 && (
           <section className="pb-16">
             <h2 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-6">
