@@ -105,18 +105,19 @@ export const entertainmentData: EntertainmentItem[] = [
     poster: posterAnime2,
     banner: heroAnime,
   },
-  {
-    id: "a2",
-    title: "Neon Reverie",
-    tagline: "Dreams are the last frontier",
-    description: "In a cyberpunk metropolis where dreams can be hacked, a young woman discovers she can reshape reality through her subconscious. Pursued by corporate assassins and rogue dreamwalkers, she must unravel the mystery of her origins before the boundary between dream and reality collapses forever.",
-    category: "anime",
-    genres: ["Sci-Fi", "Drama"],
-    year: 2023,
-    rating: 8.8,
-    poster: posterAnime1,
-    banner: heroAnime,
-  },
+   {
+     id: "a2",
+     title: "Dragon Ball", 
+    tagline: "Push beyond your limits", 
+     description: "A martial artist with extraordinary power protects Earth from increasingly powerful threats across the universe.", 
+     category: "anime", 
+     genres: ["Action", "Adventure"], 
+     year: 1986, 
+     rating: 8.7, 
+     poster: placeholder, 
+     banner: heroAnime 
+   },
+  
   {
     id: "a3",
     title: "Iron Celestial",
