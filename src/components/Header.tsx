@@ -1,10 +1,14 @@
 import type { Category } from "@/data/entertainment";
 import { categoryLabels } from "@/data/entertainment";
+import SearchBar from "./SearchBar";
 
 interface HeaderProps {
   activeCategory: Category | "all";
   onCategoryChange: (category: Category | "all") => void;
   hasSelectedItem: boolean;
+  searchQuery: string;
+  onSearchChange: (value: string) => void;
+  onSearchClear: () => void;
 }
 
 const categories: (Category | "all")[] = ["all", "marvel", "series", "anime"];
@@ -16,12 +20,20 @@ const categoryStyles: Record<string, string> = {
   anime: "text-anime-glow border-anime-glow",
 };
 
-export default function Header({ activeCategory, onCategoryChange, hasSelectedItem }: HeaderProps) {
+export default function Header({
+  activeCategory,
+  onCategoryChange,
+  hasSelectedItem,
+  searchQuery,
+  onSearchChange,
+  onSearchClear,
+}: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-panel">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <h1 className="font-display text-xl font-bold tracking-tight text-foreground">
+        {/* Top row: logo + nav */}
+        <div className="flex items-center justify-between h-14">
+          <h1 className="font-display text-xl font-bold tracking-tight text-foreground shrink-0">
             <span className="text-marvel">S</span>
             <span className="text-series">T</span>
             <span className="text-anime">R</span>
@@ -52,6 +64,17 @@ export default function Header({ activeCategory, onCategoryChange, hasSelectedIt
             </nav>
           )}
         </div>
+
+        {/* Search row */}
+        {!hasSelectedItem && (
+          <div className="flex justify-center pb-3">
+            <SearchBar
+              query={searchQuery}
+              onChange={onSearchChange}
+              onClear={onSearchClear}
+            />
+          </div>
+        )}
       </div>
     </header>
   );
