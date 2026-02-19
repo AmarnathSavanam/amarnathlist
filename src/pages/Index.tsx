@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import CardGrid from "@/components/CardGrid";
 import DetailView from "@/components/DetailView";
+import GenreFilter from "@/components/GenreFilter";
 import { useAppState } from "@/hooks/useAppState";
 import { useSearch } from "@/hooks/useSearch";
 import {
@@ -9,22 +10,37 @@ import {
   categoryLabels,
   type Category,
 } from "@/data/entertainment";
+import { useMemo } from "react";
 
 const categories: Category[] = ["marvel", "series", "anime"];
 
 const Index = () => {
-  const { activeCategory, setActiveCategory, selectedItem, openDetail, closeDetail } =
-    useAppState();
+  const {
+    activeCategory, setActiveCategory,
+    selectedItem, openDetail, closeDetail,
+    activeGenre, setActiveGenre, handleGenreFromDetail,
+  } = useAppState();
 
   // Get items for current view
-  const currentItems =
-    activeCategory === "all" ? getAllData() : getItemsByCategory(activeCategory);
+  const categoryItems = useMemo(() =>
+    activeCategory === "all" ? getAllData() : getItemsByCategory(activeCategory),
+    [activeCategory]
+  );
 
-  const { query, setQuery, clearSearch, filtered, isSearching } = useSearch(currentItems);
+  // Apply genre filter
+  const genreFiltered = useMemo(() => {
+    if (!activeGenre) return categoryItems;
+    return categoryItems.filter((item) =>
+      item.genres.some((g) => g.toLowerCase() === activeGenre.toLowerCase())
+    );
+  }, [categoryItems, activeGenre]);
 
-  // Reset search when category changes
+  const { query, setQuery, clearSearch, filtered, isSearching } = useSearch(genreFiltered);
+
+  // Reset search + genre when category changes
   const handleCategoryChange = (cat: Category | "all") => {
     clearSearch();
+    setActiveGenre(null);
     setActiveCategory(cat);
   };
 
@@ -45,6 +61,7 @@ const Index = () => {
             item={selectedItem}
             onBack={closeDetail}
             onCardClick={openDetail}
+            onGenreClick={handleGenreFromDetail}
           />
         ) : (
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -59,6 +76,13 @@ const Index = () => {
                 Explore curated titles across Marvel, Series, and Anime — handpicked for you.
               </p>
             </div>
+
+            {/* Genre filter chips */}
+            <GenreFilter
+              items={categoryItems}
+              activeGenre={activeGenre}
+              onGenreChange={setActiveGenre}
+            />
 
             {isSearching ? (
               filtered.length > 0 ? (
@@ -77,7 +101,7 @@ const Index = () => {
                   </p>
                 </div>
               )
-            ) : activeCategory === "all" ? (
+            ) : activeCategory === "all" && !activeGenre ? (
               categories.map((cat) => (
                 <CardGrid
                   key={cat}
@@ -90,7 +114,11 @@ const Index = () => {
               <CardGrid
                 items={filtered}
                 onCardClick={openDetail}
-                categoryLabel={categoryLabels[activeCategory]}
+                categoryLabel={
+                  activeGenre
+                    ? `${activeGenre}${activeCategory !== "all" ? ` in ${categoryLabels[activeCategory]}` : ""}`
+                    : categoryLabels[activeCategory as Category]
+                }
               />
             )}
           </div>
