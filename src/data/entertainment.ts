@@ -95,14 +95,14 @@ export const entertainmentData: EntertainmentItem[] = [
   // Anime
   {
     id: "a1",
-    title: "Blade of Eternity",
-    tagline: "One sword. Infinite battles.",
-    description: "A young swordsman inherits a cursed blade that grants immortality at a terrible price. Each battle drains a piece of his humanity. As he journeys across war-torn kingdoms seeking a cure, he discovers the sword's true purpose — and the apocalyptic prophecy tied to his bloodline.",
+    title:  "Naruto",
+    tagline: "Believe it!",
+    description:  "A young ninja outcast dreams of becoming the leader of his village, carrying a powerful beast sealed within him.",
     category: "anime",
-    genres: ["Action", "Fantasy"],
-    year: 2024,
-    rating: 9.0,
-    poster: posterAnime1,
+    genres: ["Action", "Adventure"]
+    year: 2002,
+    rating: 8.6,
+    poster: posterAnime2,
     banner: heroAnime,
   },
   {
@@ -114,7 +114,7 @@ export const entertainmentData: EntertainmentItem[] = [
     genres: ["Sci-Fi", "Drama"],
     year: 2023,
     rating: 8.8,
-    poster: posterAnime2,
+    poster: posterAnime1,
     banner: heroAnime,
   },
   {
