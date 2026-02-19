@@ -89,7 +89,7 @@ export default function DetailView({ item, onBack, onCardClick }: DetailViewProp
             <h2 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-6">
               Recommended for you
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
               {recommendations.map((rec, i) => (
                 <EntertainmentCard
                   key={rec.id}
