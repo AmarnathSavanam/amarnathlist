@@ -99,7 +99,7 @@ export const entertainmentData: EntertainmentItem[] = [
     tagline: "Believe it!",
     description:  "A young ninja outcast dreams of becoming the leader of his village, carrying a powerful beast sealed within him.",
     category: "anime",
-    genres: ["Action", "Adventure"]
+    genres: ["Action", "Adventure"] ,
     year: 2002,
     rating: 8.6,
     poster: posterAnime2,
