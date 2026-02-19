@@ -114,8 +114,8 @@ export const entertainmentData: EntertainmentItem[] = [
      genres: ["Action", "Adventure"], 
      year: 1986, 
      rating: 8.7, 
-     poster: placeholder, 
-     banner: heroAnime 
+     poster: posterAnime1, 
+     banner: heroAnime ,
    },
   
   {
