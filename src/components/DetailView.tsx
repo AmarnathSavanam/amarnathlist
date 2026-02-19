@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import type { EntertainmentItem, Category } from "@/data/entertainment";
 import { getRecommendations } from "@/data/entertainment";
+import { resolveImages } from "@/data/imageRegistry";
 import EntertainmentCard from "./EntertainmentCard";
 
 interface DetailViewProps {
@@ -23,13 +24,14 @@ const accentBadge: Record<Category, string> = {
 
 export default function DetailView({ item, onBack, onCardClick }: DetailViewProps) {
   const recommendations = getRecommendations(item, 4);
+  const images = resolveImages(item.title, item.poster, item.banner, item.category);
 
   return (
     <div className="animate-fade-in-scale">
       {/* Banner */}
       <div className="relative w-full h-[50vh] sm:h-[60vh] overflow-hidden">
         <img
-          src={item.banner}
+          src={images.banner}
           alt={item.title}
           className="w-full h-full object-cover"
         />

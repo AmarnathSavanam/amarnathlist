@@ -20,7 +20,7 @@ const accentBorders: Record<Category, string> = {
 };
 
 export default function EntertainmentCard({ item, onClick, index }: EntertainmentCardProps) {
-  const images = resolveImages(item.title, item.poster, item.banner);
+  const images = resolveImages(item.title, item.poster, item.banner, item.category);
 
   return (
     <button
