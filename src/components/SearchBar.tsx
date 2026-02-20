@@ -8,7 +8,7 @@ interface SearchBarProps {
 
 export default function SearchBar({ query, onChange, onClear }: SearchBarProps) {
   return (
-    <div className="relative w-full max-w-[420px] lg:max-w-[480px]">
+    <div className="relative w-full max-w-full sm:max-w-[460px]">
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
       <input
         type="text"
@@ -16,12 +16,12 @@ export default function SearchBar({ query, onChange, onClear }: SearchBarProps) 
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search titles or genres…"
         className="
-          w-full h-10 pl-9 pr-9
+          w-full h-[42px] pl-9 pr-9
           rounded-lg
           glass-panel
           text-sm text-foreground placeholder:text-muted-foreground
           border border-border
-          focus:outline-none focus:ring-1 focus:ring-ring
+          focus:outline-none focus:ring-2 focus:ring-ring/40 focus:border-ring/60
           transition-all duration-200
         "
       />

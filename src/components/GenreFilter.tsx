@@ -17,7 +17,7 @@ export default function GenreFilter({ items, activeGenre, onGenreChange }: Genre
   if (genres.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap gap-2 mb-6">
+    <div className="flex gap-2 mb-6 overflow-x-auto scrollbar-hide sm:flex-wrap sm:overflow-visible pb-1 sm:pb-0">
       <button
         onClick={() => onGenreChange(null)}
         className={`
