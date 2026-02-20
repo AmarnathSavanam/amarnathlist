@@ -19,6 +19,7 @@ const Index = () => {
     activeCategory, setActiveCategory,
     selectedItem, openDetail, closeDetail,
     activeGenre, setActiveGenre, handleGenreFromDetail,
+    goHome,
   } = useAppState();
 
   // Get items for current view
@@ -53,6 +54,7 @@ const Index = () => {
         searchQuery={query}
         onSearchChange={setQuery}
         onSearchClear={clearSearch}
+        onLogoClick={goHome}
       />
 
       <main className="pt-28">

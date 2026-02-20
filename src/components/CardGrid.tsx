@@ -17,7 +17,7 @@ export default function CardGrid({ items, onCardClick, categoryLabel }: CardGrid
           {categoryLabel}
         </h2>
       )}
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3 sm:gap-4">
         {items.map((item, i) => (
           <EntertainmentCard
             key={item.id}

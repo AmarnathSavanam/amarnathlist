@@ -9,6 +9,7 @@ interface HeaderProps {
   searchQuery: string;
   onSearchChange: (value: string) => void;
   onSearchClear: () => void;
+  onLogoClick: () => void;
 }
 
 const categories: (Category | "all")[] = ["all", "marvel", "series", "anime"];
@@ -27,18 +28,19 @@ export default function Header({
   searchQuery,
   onSearchChange,
   onSearchClear,
+  onLogoClick,
 }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass-panel">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top row: logo + nav */}
         <div className="flex items-center justify-between h-14">
-          <h1 className="font-display text-xl font-bold tracking-tight text-foreground shrink-0">
+          <button onClick={onLogoClick} className="font-display text-xl font-bold tracking-tight text-foreground shrink-0 cursor-pointer hover:opacity-80 transition-opacity">
             <span className="text-marvel">S</span>
             <span className="text-series">T</span>
             <span className="text-anime">R</span>
             EAM
-          </h1>
+          </button>
 
           {!hasSelectedItem && (
             <nav className="flex items-center gap-1 sm:gap-2">
