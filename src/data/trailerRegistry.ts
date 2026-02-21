@@ -53,6 +53,19 @@ const trailerRegistry: Record<string, string> = {
   "mashle-magic-and-muscles": "https://www.youtube.com/embed/VLIuld03Y0c",
   "shangri-la-frontier": "https://www.youtube.com/embed/cHWh6aSqGOw",
   "lookism": "https://www.youtube.com/embed/a5oD0dMU3wU",
+  // Marvel
+  "shadow-protocol": "https://www.youtube.com/embed/YLorLVa95Xo",
+  "crimson-guardian": "https://www.youtube.com/embed/TcMBFSGVi1c",
+  "void-walker": "https://www.youtube.com/embed/giXco2jaZ_4",
+  "omega-squadron": "https://www.youtube.com/embed/JORN2hkXLyM",
+  // Series
+  "dark": "https://www.youtube.com/embed/ESEUoa-mz2c",
+  "12-monkeys": "https://www.youtube.com/embed/aLt6M4KMI6Y",
+  "from": "https://www.youtube.com/embed/pDHqAj4eJcM",
+  "breaking-bad": "https://www.youtube.com/embed/HhesaQXLuRY",
+  // Additional anime
+  "iron-celestial": "https://www.youtube.com/embed/u4HRsf9Oqng",
+  "moonlit-ronin": "https://www.youtube.com/embed/qCPOEkbp3FE",
 };
 
 export function resolveTrailer(title: string): string | null {
