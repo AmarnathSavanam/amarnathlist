@@ -167,8 +167,9 @@ export const entertainmentData: EntertainmentItem[] = [
   year: 2015,
   rating: 8.7,
   poster: posterSeries2,
-  banner: heroSeries2,
-}{
+   banner: heroSeries,
+},
+ {
   id: "s3",
   title: "From",
   tagline: "You can enter. You can’t leave.",
@@ -179,7 +180,7 @@ export const entertainmentData: EntertainmentItem[] = [
   year: 2022,
   rating: 8.1,
   poster: posterSeries3,
-  banner: heroSeries3,
+   banner: heroSeries,
 },
  {
   id: "s4",
@@ -192,7 +193,7 @@ export const entertainmentData: EntertainmentItem[] = [
   year: 2008,
   rating: 9.5,
   poster: posterSeries4,
-  banner: heroSeries4,
+   banner: heroSeries,
 },
 ];
 
