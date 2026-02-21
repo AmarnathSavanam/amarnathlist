@@ -14,6 +14,7 @@ import heroMarvel from "@/assets/hero-marvel.jpg";
 import heroAnime from "@/assets/hero-anime.jpg";
 import heroSeries from "@/assets/hero-series.jpg";
 import { extendedAnimeData } from "./animeExtended";
+import { extendedMarvelData } from "./marvelExtended";
 
 export type Category = "marvel" | "series" | "anime";
 
@@ -193,7 +194,7 @@ export const entertainmentData: EntertainmentItem[] = [
 ];
 
 export function getAllData(): EntertainmentItem[] {
-  return [...entertainmentData, ...extendedAnimeData];
+  return [...entertainmentData, ...extendedAnimeData, ...extendedMarvelData];
 }
 
 export function getItemsByCategory(category: Category): EntertainmentItem[] {
